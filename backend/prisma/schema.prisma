@@ -1,0 +1,47 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  ADMIN
+  NORMAL_USER
+  STORE_OWNER
+}
+
+model User {
+  id        String   @id @default(uuid())
+  name      String   @db.VarChar(60)
+  email     String   @unique @db.VarChar(191)
+  password  String   @db.VarChar(255)
+  address   String   @db.VarChar(400)
+  role      Role     @default(NORMAL_USER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  ratingsSubmitted Rating[] @relation("UserRatings")
+  ratingsReceived  Rating[] @relation("StoreRatings")
+
+  @@index([role])
+}
+
+model Rating {
+  id           String   @id @default(uuid())
+  value        Int      // 1 to 5
+  userId       String
+  storeOwnerId String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Relations
+  user       User @relation("UserRatings", fields: [userId], references: [id], onDelete: Cascade)
+  storeOwner User @relation("StoreRatings", fields: [storeOwnerId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, storeOwnerId])
+  @@index([storeOwnerId])
+}

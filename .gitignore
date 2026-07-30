@@ -1,0 +1,10 @@
+# OS metadata
+.DS_Store
+
+# Editor configurations
+.vscode/
+.idea/
+
+# Scratch & temporary workspace folders
+scratch/
+*.log
