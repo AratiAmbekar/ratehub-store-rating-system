@@ -1,146 +1,162 @@
 # RateHub - Store Ratings & Reviews Platform
 
-RateHub is a premium, full-stack web application designed for submitting, managing, and tracking verified store ratings. It implements a secure, role-based authentication flow with HTTPOnly cookies, interactive rating selectors, detailed dashboards, and strict validation checks.
+RateHub is a full-stack web application for submitting, managing, and tracking store ratings. It implements secure role-based authentication using HTTPOnly cookies, interactive rating features, dashboards, and strict validation checks.
 
-The app features a **modern dark-mode glassmorphism theme** built entirely with Vanilla CSS.
+The application features a modern dark-mode glassmorphism UI built with custom Vanilla CSS.
 
 ---
 
 ## 🚀 Tech Stack
 
-- **Backend**: Express.js + TypeScript + Prisma ORM
-- **Database**: MySQL
-- **Frontend**: React (Vite) + TypeScript
-- **Styling**: Vanilla CSS (Hand-crafted theme variables, custom scrollbars, animations, and glow effects)
-- **Icons**: Lucide React
-- **Testing**: Postman
+- **Backend**: Express.js + TypeScript + Prisma ORM  
+- **Database**: MySQL  
+- **Frontend**: React (Vite) + TypeScript  
+- **Styling**: Vanilla CSS (custom themes, animations, UI effects)  
+- **Icons**: Lucide React  
+- **Testing**: Postman  
 
 ---
 
 ## 🛠️ Key Features
 
-### 1. Role-Based Dashboards
-- **System Administrator**:
-  - Stat cards showing total user count, store count, and submitted reviews.
-  - Filterable list of normal and admin users (filter by Name, Email, Address, Role).
-  - Filterable list of stores displaying computed average ratings (filter by Name, Email, Address).
-  - Modals to view full details of any user/store.
-  - Form modal to add new users and stores.
-- **Normal User**:
-  - Live search bar to filter registered stores by Name and Address.
-  - Store listings displaying overall average ratings.
-  - Interactive star rating picker (1-5) on cards to submit or instantly modify feedback.
-  - Password update settings modal.
-- **Store Owner**:
-  - Large analytics card showing overall average store rating.
-  - Table of all customers who have rated their store with dates, emails, and ratings.
-  - Password update settings modal.
+### Role-Based Dashboards
+- **System Administrator**
+  - View total users, stores, and ratings
+  - Filter users and stores
+  - Add new users and stores
+  - View detailed information via modals  
 
-### 2. Form Validations
-The application strictly enforces validation criteria on both the client (React forms) and server (Express validator middlewares):
-- **Name**: Must be between `20` and `60` characters.
-- **Address**: Must not exceed `400` characters.
-- **Password**: Must be `8` to `16` characters long and contain at least one uppercase letter and one special character.
-- **Email**: Must follow standard email formatting.
+- **Normal User**
+  - Search and browse stores
+  - View average ratings
+  - Submit and update ratings (1–5 stars)
+  - Update password  
+
+- **Store Owner**
+  - View average rating analytics
+  - See users who rated their store
+  - Update password  
+
+---
+
+### Form Validation
+Validation is enforced on both client and server:
+
+- **Name**: 20–60 characters  
+- **Address**: Max 400 characters  
+- **Password**: 8–16 characters, at least one uppercase and one special character  
+- **Email**: Standard format validation  
 
 ---
 
 ## 📂 Project Structure
 
 ```
+
 ├── backend/
 │   ├── prisma/
-│   │   ├── schema.prisma   # DB schemas & models
-│   │   └── seed.ts         # Database seed script
+│   │   ├── schema.prisma
+│   │   └── seed.ts
 │   └── src/
-│       ├── config/         # DB connections
-│       ├── controllers/    # Route controllers
-│       ├── middleware/     # Auth checks, validation middleware
-│       ├── routes/         # Express routes mapping
-│       ├── index.ts        # App entry point
-│       └── index.spec.ts   # Integration test suite
+│       ├── config/
+│       ├── controllers/
+│       ├── middleware/
+│       ├── routes/
+│       ├── index.ts
+│       └── index.spec.ts
 └── frontend/
-    ├── src/
-    │   ├── components/     # Reusable UI widgets (StarRating, PasswordModal, StatsCard, Navbar)
-    │   ├── pages/          # App Views (Login, AdminDashboard, NormalUserDashboard, StoreOwnerDashboard)
-    │   ├── utils/          # API client fetch configurations and Auth contexts
-    │   ├── index.css       # Core glassmorphic theme styling variables
-    │   ├── main.tsx        # React entrypoint
-    │   └── App.tsx         # Dashboard router controller
-    └── index.html          # Shell layout (SEO metadata tags)
-```
+├── src/
+│   ├── components/
+│   ├── pages/
+│   ├── utils/
+│   ├── index.css
+│   ├── main.tsx
+│   └── App.tsx
+└── index.html
+
+````
 
 ---
 
 ## ⚙️ Local Setup Instructions
 
 ### Prerequisites
-Make sure you have Node.js (v18+) and PostgreSQL installed and running on your machine.
-
-### 1. Database Configuration
-In PostgreSQL, create a database named `store_ratings_db`. Ensure your local connection credentials are set up.
-
-### 2. Backend Setup
-1. Open the `/backend` folder:
-   ```bash
-   cd backend
-   ```
-2. Install packages:
-   ```bash
-   npm install
-   ```
-3. Configure the environment variables in a `.env` file:
-   ```env
-   DATABASE_URL="postgresql://<username>:<password>@localhost:5432/store_ratings_db?schema=public"
-   JWT_SECRET="your-super-secret-key"
-   PORT=5001
-   NODE_ENV="development"
-   ```
-4. Run migrations and seed default data:
-   ```bash
-   npx prisma migrate dev --name init
-   ```
-5. Start the backend development server:
-   ```bash
-   npm run dev
-   ```
-   *The backend will listen on port `5001`.*
-
-### 3. Frontend Setup
-1. Open the `/frontend` folder:
-   ```bash
-   cd ../frontend
-   ```
-2. Install packages:
-   ```bash
-   npm install --legacy-peer-deps
-   ```
-3. Start the Vite development server:
-   ```bash
-   npm run dev
-   ```
-   *The frontend will run on `http://localhost:5173/`.*
+- Node.js (v18+)
+- MySQL installed and running
 
 ---
 
-## 🔑 Seeding / Testing Credentials
+### 1. Database Setup
+Create a MySQL database:
 
-The database seeding initializes the platform with the following demo credentials (all seeded names satisfy the 20-60 character validations):
+```sql
+CREATE DATABASE store_ratings_db;
+````
 
-| Role | Email | Password | Name |
-|---|---|---|---|
-| **System Administrator** | `admin@ratings.com` | `Password123!` | `System Administrator Admin` |
-| **Store Owner (Coffee)** | `coffee@ratings.com` | `Password123!` | `Gourmet Coffee Roasters & Cafe` |
-| **Store Owner (Tech)** | `tech@ratings.com` | `Password123!` | `SuperTech Gadget World Store` |
-| **Normal User** | `alex@ratings.com` | `Password123!` | `Alexander Graham Bell Harrison` |
-| **Normal User** | `elizabeth@ratings.com` | `Password123!` | `Elizabeth Cady Stanton Smith` |
+---
+
+### 2. Backend Setup
+
+```bash
+cd backend
+npm install
+```
+
+Create a `.env` file:
+
+```env
+DATABASE_URL="mysql://<username>:<password>@localhost:3306/store_ratings_db"
+JWT_SECRET="your-secret-key"
+PORT=5001
+NODE_ENV="development"
+```
+
+Run migrations:
+
+```bash
+npx prisma migrate dev --name init
+```
+
+Start backend:
+
+```bash
+npm run dev
+```
+
+---
+
+### 3. Frontend Setup
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+---
+
+## 🔑 Demo Credentials
+
+| Role        | Email                                                 | Password     |
+| ----------- | ----------------------------------------------------- | ------------ |
+| Admin       | [admin@ratings.com](mailto:admin@ratings.com)         | Password123! |
+| Store Owner | [coffee@ratings.com](mailto:coffee@ratings.com)       | Password123! |
+| Store Owner | [tech@ratings.com](mailto:tech@ratings.com)           | Password123! |
+| User        | [alex@ratings.com](mailto:alex@ratings.com)           | Password123! |
+| User        | [elizabeth@ratings.com](mailto:elizabeth@ratings.com) | Password123! |
 
 ---
 
 ## 🧪 Testing
 
-To run the backend integration and validation tests:
-```bash
-cd backend
-npm run test
-```
+APIs were tested and validated using Postman to ensure correct request-response handling, authentication, and error scenarios.
+
+---
+
+## 💡 Highlights
+
+* Secure authentication using **HTTPOnly cookies**
+* Role-based access control (RBAC)
+* Clean REST API design
+* Optimized database queries using Prisma
+* Real-time rating updates and analytics dashboards
