@@ -9,7 +9,7 @@ The app features a **modern dark-mode glassmorphism theme** built entirely with 
 ## 🚀 Tech Stack
 
 - **Backend**: Express.js + TypeScript + Prisma ORM
-- **Database**: PostgreSQL
+- **Database**: MySQL
 - **Frontend**: React (Vite) + TypeScript
 - **Styling**: Vanilla CSS (Hand-crafted theme variables, custom scrollbars, animations, and glow effects)
 - **Icons**: Lucide React
