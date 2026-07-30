@@ -37,7 +37,7 @@ export const Navbar: React.FC = () => {
       <nav className="navbar" id="app-navbar">
         <div className="brand" id="app-brand">
           <Award size={28} style={{ color: 'var(--color-primary)' }} />
-          <span>RateHub</span>
+          <span>RatingSphere</span>
         </div>
 
         <div className="nav-user" id="navbar-user-section">
