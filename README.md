@@ -1,6 +1,6 @@
-# RatingSphere - Store Ratings & Reviews Platform
+# RateHub - Store Ratings & Reviews Platform
 
-RatingSphere is a premium, full-stack web application designed for submitting, managing, and tracking verified store ratings. It implements a secure, role-based authentication flow with HTTPOnly cookies, interactive rating selectors, detailed dashboards, and strict validation checks.
+RateHub is a premium, full-stack web application designed for submitting, managing, and tracking verified store ratings. It implements a secure, role-based authentication flow with HTTPOnly cookies, interactive rating selectors, detailed dashboards, and strict validation checks.
 
 The app features a **modern dark-mode glassmorphism theme** built entirely with Vanilla CSS.
 

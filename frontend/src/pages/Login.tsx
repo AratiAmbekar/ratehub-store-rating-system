@@ -123,7 +123,7 @@ export const Login: React.FC = () => {
             }}
           >
             <Sparkles size={36} />
-            <h1 style={{ letterSpacing: '-0.03em' }}>RatingSphere</h1>
+            <h1 style={{ letterSpacing: '-0.03em' }}>RateHub</h1>
           </div>
           <h2
             style={{
@@ -136,7 +136,7 @@ export const Login: React.FC = () => {
             Real opinions. Verified stores.
           </h2>
           <p style={{ color: 'var(--text-secondary)', fontSize: '1.05rem', lineHeight: '1.6' }}>
-            RatingSphere bridges the gap between consumers and businesses. Share your experiences, grade
+            RateHub bridges the gap between consumers and businesses. Share your experiences, grade
             stores from 1 to 5, and view insights instantly on our role-based, glassmorphic dashboard.
           </p>
         </div>
